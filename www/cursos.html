@@ -34,6 +34,8 @@
 		function montarCursos(){
 			var cursos = controller.getCursos();
 			
+			alert(cursos.length)
+			
 			if(cursos != null){
 				for(var i = 0; i < cursos.length; i++){
 					$("#cursos").append('<button class="ui-btn ui-corner-all" data-transition ="slide" onclick="controller.setNomeCurso("' + cursos[i].Value +'")">' + cursos[i].Name + '</button>')

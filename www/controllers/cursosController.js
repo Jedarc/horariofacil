@@ -12,20 +12,19 @@ var controller = {
     },
 
     // Obtendo todos os cursos para serem exibidas na tela.
-    getCursos: function () {
-        
-    	function carregarCursos() {
-            var resultado = [];
+    getCursos: function (onDone) {
+    	
+        loadDependence("Dao/cursosDao.js", function(){
+        	var resultado = [];
             var cursos = new cursosDao();
-            resultado = cursos.getCursos();
-            if (resultado.length > 0) {
-                return resultado;
-            } else {
-            	return null;
-            }
-        }
-
-        loadDependence("Dao/cursosDao.js", carregarCursos);
+            cursos.getCursos(function(resultado){
+            	if (resultado.length > 0) {
+            		onDone(resultado);
+                } else {
+                    onDone(null);
+                }
+            });
+        });
 
     }
 
