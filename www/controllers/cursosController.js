@@ -3,7 +3,6 @@ var controller = {
 
     // Obtendo o curso selecionado pelo usuário.
     setNomeCurso: function (curso) {
-    	alert(curso)
         if (curso != null) {
             location.href = "semestres.html?" + curso;
         } else {
