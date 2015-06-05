@@ -3,6 +3,7 @@ var controller = {
 
     // Obtendo o curso selecionado pelo usuário.
     setNomeCurso: function (curso) {
+    	alert(curso)
         if (curso != null) {
             location.href = "semestres.html?" + curso;
         } else {
@@ -12,20 +13,16 @@ var controller = {
     },
 
     // Obtendo todos os cursos para serem exibidas na tela.
-    getCursos: function (onDone) {
+    getCursos: function () {
+        
+    	var cursos = new cursosDao();
+    	resultado = cursos.getCursos();
     	
-        loadDependence("Dao/cursosDao.js", function(){
-        	var resultado = [];
-            var cursos = new cursosDao();
-            cursos.getCursos(function(resultado){
-            	if (resultado.length > 0) {
-            		onDone(resultado);
-                } else {
-                    onDone(null);
-                }
-            });
-        });
-
+    	if(resultado.length > 0){
+    		return resultado;
+    	} else {
+    		return null;
+    	}
     }
 
-};
+}

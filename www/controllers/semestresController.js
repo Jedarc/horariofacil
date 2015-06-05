@@ -3,7 +3,7 @@ var itens = url.split("&");
 
 if (itens.length > 1) {
 	alert("Ops... Algo deu errado,\nVamos tentar de novo!");
-	location.href = "turmas.html";
+	location.href = "cursos.html";
 }
 
 var controller = {
@@ -11,6 +11,6 @@ var controller = {
 		return window.decodeURIComponent(itens[0]);
 	},
 	voltar: function(){
-		location.href = "turmas.html";
+		location.href = "cursos.html";
 	}
 };
