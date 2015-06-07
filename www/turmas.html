@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="css/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript" src="Dao/semestresDao.js"></script>
+<script type="text/javascript" src="controllers/semestresController.js"></script>
+
+<title>Semestres</title>
+</head>
+<body>
+	<script>
+		$(function() {
+			var curso = controller.getNomeCurso();
+			$("#curso").text(curso);
+		});
+	</script>
+	<div data-role="controlgroup" data-type="horizontal">
+		<button onclick="controller.voltar()"
+			class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Cursos</button>
+	</div>
+
+	<element>
+	<center>
+		<h3>
+			Exibindo semestres do curso de
+			<div id="curso">1</div>
+		</h3>
+		
+		<input id="imgCarregando" type="image" src="img/carregando.gif" />
+		
+		<div data-role="controlgroup" id="semestres"></div>
+
+	</center>
+	</element>
+	<script>
+		var semestres = controller.getSemestres();
+		
+		if(semestres != null){
+			
+			$('#imgCarregando').remove();
+			
+			for(var i = 0; i < semestres.length; i++){
+				$("#semestres").append("<a class='ui-btn ui-corner-all' onclick=\"controller.setPeriodos('"+ semestres[i].Value.replace(/'/g,"\\'")+ "')\">"+ semestres[i].Name + "</button>");
+			}
+		}
+		
+	</script>
+
+</body>
+</html>
