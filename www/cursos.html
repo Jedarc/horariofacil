@@ -50,11 +50,16 @@
 	</element>
 
 	<script>
+	
+	
+	
 		function montarCursos() {
 			var fechado = $('#expansorCurso').hasClass('ui-collapsible-collapsed');
 
 			if (fechado) {
-
+				
+				//$('#expansorCurso').collapsible("expand");
+				
 				var cursos = controller.getCursos();
 
 				if (cursos != null) {
