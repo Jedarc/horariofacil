@@ -1,49 +1,25 @@
 function cursosDao() {
 	this.getCursos = function() {
 
-		var cursos = [];
-
-		var resultado = new Object();
-
-		/*
-		$.ajax({
-			url : "http://localhost:10642/Mobile/ObterCursos",
-			type : "GET",
-			dataType : "jsonp",
-			success : function(dados) {
-				resultado = dados;
-				alert("json sucess")
-			},
-			error : function(xhr, ajaxOptions, error) {
-				alert("erro json: " + xhr.responseText)
-			}
-		});
-		*/
-
-		function posAjax() {
-			alert("pos ajax " + resultado.length)
-		}
-
-		cursos.push({
-			"Value" : "Anáse de Sistemas",
-			"Name" : "Anáse de Sistemas"
+		$.ajaxSetup({
+			async : false
 		});
 
-		cursos.push({
-			"Value" : "Ciência da Computação",
-			"Name" : "Ciência da Computação"
-		});
+		var items = [];
 		
-		cursos.push({
-			"Value" : "Redes",
-			"Name" : "Redes"
-		});
-		
-		cursos.push({
-			"Value" : "Nutrição",
-			"Name" : "Nutrição"
-		});
+		$.getJSON("http://horariofacil.azurewebsites.net/Mobile/ObterCursos",
+				function(data) {
 
-		return cursos;
+					$.each(data, function(key, val) {
+						items.push({
+							"Codigo" : val.Codigo,
+							"Nome" : val.Nome
+						});
+
+					});
+
+				});
+		
+		return items;
 	}
 }

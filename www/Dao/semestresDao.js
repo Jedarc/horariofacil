@@ -1,28 +1,22 @@
-function semestresDao(){
-	this.getSemestre = function(curso) {
-		
-		var semestres = [];
-		
-		semestres.push({
-			"Value" : "1",
-			"Name" : "1"
+function semestresDao() {
+	this.getCurso = function(codigo) {
+
+		$.ajaxSetup({
+			async : false
 		});
 
-		semestres.push({
-			"Value" : "2",
-			"Name" : "2"
-		});
-		
-		semestres.push({
-			"Value" : "3",
-			"Name" : "3"
-		});
-		
-		semestres.push({
-			"Value" : "4",
-			"Name" : "4"
-		});
-		
-		return semestres;
+		var itens = [];
+
+		$.getJSON("http://horariofacil.azurewebsites.net/Mobile/ObterCursoPorId?id=" + codigo,
+				function(data) {
+					itens.push({
+						"Codigo" : data.Codigo,
+						"Nome" : data.Nome,
+						"qtdSemestre" : data.qtdSemestre
+					});
+
+				});
+
+		return itens[0];
 	}
 }

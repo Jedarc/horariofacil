@@ -12,8 +12,8 @@ function cursosDao() {
 
 					$.each(data, function(key, val) {
 						items.push({
-							"Value" : val.Codigo,
-							"Name" : val.Nome
+							"Codigo" : val.Codigo,
+							"Nome" : val.Nome
 						});
 
 					});

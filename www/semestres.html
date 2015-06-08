@@ -16,8 +16,9 @@
 <body>
 	<script>
 		$(function() {
-			var curso = controller.getNomeCurso();
-			$("#curso").text(curso);
+			var nome = controller.getCurso();
+			$("#curso").text(nome);
+			calcularSemestres();
 		});
 	</script>
 	<div data-role="controlgroup" data-type="horizontal">
@@ -31,25 +32,32 @@
 			Exibindo semestres do curso de
 			<div id="curso">1</div>
 		</h3>
-		
+
 		<input id="imgCarregando" type="image" src="img/carregando.gif" />
-		
+
 		<div data-role="controlgroup" id="semestres"></div>
 
 	</center>
 	</element>
 	<script>
-		var semestres = controller.getSemestres();
-		
-		if(semestres != null){
-			
+		function calcularSemestres() {
+			semestres = controller.getSemestres();
+			montarSemestes();
+		}
+
+		function montarSemestes() {
 			$('#imgCarregando').remove();
+
+			$('#semestres').append('<h6 class="optCurso">Escolha o seu.</h6>');
 			
-			for(var i = 0; i < semestres.length; i++){
-				$("#semestres").append("<a class='ui-btn ui-corner-all' onclick=\"controller.setPeriodos('"+ semestres[i].Value.replace(/'/g,"\\'")+ "')\">"+ semestres[i].Name + "</button>");
+			for (var i = 1; i <= semestres; i++) {
+				$("#semestres").append(
+						"<a class='ui-btn ui-corner-all' onclick=\"controller.setPeriodos('"
+								+ i
+								+ "')\">" + i + "</button>");
 			}
 		}
-		
+
 	</script>
 
 </body>

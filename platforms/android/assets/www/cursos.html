@@ -15,11 +15,6 @@
 
 </head>
 <body>
-	<br />
-	<div data-role="header" style="padding-top: -3px">
-		<h1>Horário Fácil</h1>
-
-	</div>
 	<element>
 	<center>
 		<h2>Localize sua turma:</h2>
@@ -50,6 +45,7 @@
 	</element>
 
 	<script>
+
 		function montarCursos() {
 			var fechado = $('#expansorCurso').hasClass('ui-collapsible-collapsed');
 
@@ -65,7 +61,7 @@
 
 					for (var i = 0; i < cursos.length; i++) {
 
-						$("#cursos").append("<button class='ui-btn ui-corner-all optCurso' data-transition ='slide' onclick=\"controller.setNomeCurso('"+ cursos[i].Value.replace(/'/g,"\\'")+ "')\">"+ cursos[i].Name + "</button>");
+						$("#cursos").append("<button class='ui-btn ui-corner-all optCurso' data-transition ='slide' onclick=\"controller.setCurso('"+ cursos[i].Codigo.replace(/'/g,"\\'")+ "')\">"+ cursos[i].Nome + "</button>");
 					}
 				}
 			} else {

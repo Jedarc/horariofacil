@@ -1,27 +1,19 @@
-// Objeto controller para guardar as funções necessárias.
 var controller = {
+	setCurso : function(codigoCurso) {
+		if (codigoCurso != null) {
+			location.href = "semestres.html?" + codigoCurso;
+		} else {
+			alert("Ops. Ocorreu um erro, vamos tentar de novo!");
+			location.href = "cursos.html";
+		}
+	},
+	getCursos : function() {
 
-    // Obtendo o curso selecionado pelo usuário.
-    setNomeCurso: function (curso) {
-        if (curso != null) {
-            location.href = "semestres.html?" + curso;
-        } else {
-            alert("Ops. Ocorreu um erro, vamos tentar de novo!");
-            location.href = "cursos.html";
-        }
-    },
+		var cursos = new cursosDao();
+		resultado = cursos.getCursos();
 
-    // Obtendo todos os cursos para serem exibidas na tela.
-    getCursos: function () {
-        
-    	var cursos = new cursosDao();
-    	resultado = cursos.getCursos();
-    	
-    	if(resultado.length > 0){
-    		return resultado;
-    	} else {
-    		return null;
-    	}
-    }
+		return resultado;
+
+	}
 
 }
