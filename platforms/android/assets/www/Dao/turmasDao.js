@@ -2,12 +2,13 @@ function turmasDao() {
 	this.getTurmas = function(semestre, curso) {
 
 		$.ajaxSetup({
-			async : false
+			async : false,
+			cache : false
 		});
 
 		var itens = [];
 
-		$.getJSON(("http://horariofacil.azurewebsites.net/Mobile/ObterTurmas?codigoTurma="	+ curso + "&semestre=" + semestre).toString(), function(data) {
+		$.getJSON((baseURL + "/ObterTurmas?codigoTurma="	+ curso + "&semestre=" + semestre).toString(), function(data) {
 
 			$.each(data, function(key, val) {
 				itens.push({

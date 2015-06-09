@@ -14,6 +14,8 @@ var controller = {
 
 		return resultado;
 
+	},
+	buscarTurma : function(codigoTurma){
+		location.href = "horario.html?" + codigoTurma;
 	}
-
 }

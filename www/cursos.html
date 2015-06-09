@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 
+<script type="text/javascript" src="Dao/configure.js"></script>
 <script type="text/javascript" src="Dao/cursosDao.js"></script>
 <script type="text/javascript" src="controllers/cursosController.js"></script>
 
@@ -23,8 +24,7 @@
 				<input id="txtTurma" type="text" data-clear-btn="true" maxlength="5" placeholder="Digite apenas o código." />
 			</div>
 			<div class="ui-block-b" style="width: 20%">
-				<input data-icon="search" data-mini="true" type="submit"
-					value="Buscar" />
+				<input onclick="perquisarTurma()" data-icon="search" data-mini="true" type="submit" value="Buscar" />
 			</div>
 		</div>
 
@@ -53,7 +53,7 @@
 
 				var cursos = controller.getCursos();
 
-				if (cursos != null) {
+				if (cursos.length > 0) {
 
 					$('#imgCarregando').remove();
 
@@ -63,11 +63,23 @@
 
 						$("#cursos").append("<button class='ui-btn ui-corner-all optCurso' data-transition ='slide' onclick=\"controller.setCurso('"+ cursos[i].Codigo.replace(/'/g,"\\'")+ "')\">"+ cursos[i].Nome + "</button>");
 					}
+				} else {
+					$('#imgCarregando').remove();
+					$('#cursos').append('<h6 class="optCurso" style="color:red">Este serviço não está disponível.</h6>');
 				}
 			} else {
 				$('.optCurso').remove();
 			}
 
+		}
+		
+		function perquisarTurma(){
+			var turma = $("#txtTurma").val();
+			if(turma == ""){
+				alert("Por favor, você deve digitar o código de sua turma!")
+			} else {
+				controller.buscarTurma(turma);
+			}
 		}
 	</script>
 

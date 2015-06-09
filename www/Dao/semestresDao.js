@@ -2,12 +2,13 @@ function semestresDao() {
 	this.getCurso = function(codigo) {
 
 		$.ajaxSetup({
-			async : false
+			async : false,
+			cache : false
 		});
 
 		var itens = [];
 
-		$.getJSON("http://horariofacil.azurewebsites.net/Mobile/ObterCursoPorId?id=" + codigo,
+		$.getJSON(baseURL + "/ObterCursoPorId?id=" + codigo,
 				function(data) {
 					itens.push({
 						"Codigo" : data.Codigo,

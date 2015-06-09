@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="css/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript" src="Dao/configure.js"></script>
+<script type="text/javascript" src="Dao/horarioDao.js"></script>
+<script type="text/javascript" src="controllers/horarioController.js"></script>
+<title>Horario</title>
+
+<script>
+	$(function() {
+		$("#horario").hide();
+		var res = controller.verificarTurma(codigoTurma);
+		if (res == true) {
+			$("#horario").show();
+			montarHorario();
+		} else {
+			controller.resetar();
+		}
+
+		function montarHorario() {
+			var data = new Date();
+			var tables = [ "Domingo", "Segunda", "Terca", "Quarta", "Quinta",
+					"Sexta", "Sabado" ]
+
+			for (var i = 0; i < 7; i++) {
+				var horario = controller.getHorario(i);
+
+				if (typeof horario[0] != 'undefined') {
+					$("#imgCarregando").hide();
+
+					for (var y = 0; y < horario.length; y++) {
+
+						var newRow = $("<tr>");
+						var cols = "";
+						cols += '<td>' + horario[y].DisciplinaNome + '</td>';
+						cols += '<td>' + horario[y].ProfessorNome + '</td>';
+
+						newRow.append(cols);
+
+						$("#" + tables[i]).append(newRow);
+					}
+
+				}
+			}
+		}
+
+	});
+</script>
+</head>
+<body>
+
+	<element>
+	<center>
+		<h3>Verifique seu horário</h3>
+
+		<input id="imgCarregando" type="image" src="img/carregando.gif" />
+
+		<div data-role="controlgroup" id="horario">
+
+			<table id="Domingo" border="1">
+				<tr>
+					<th colspan="2">Domingo</th>
+				</tr>
+				<tr>
+					<th>Disciplina</th>
+					<th>Professor</th>
+				</tr>
+			</table>
+
+			<br />
+
+			<table id="Segunda" border="1">
+				<tr>
+					<th colspan="2">Segunda</th>
+				</tr>
+				<tr>
+					<th>Disciplina</th>
+					<th>Professor</th>
+				</tr>
+			</table>
+
+			<br />
+
+			<table id="Terca" border="1">
+				<tr>
+					<th colspan="2">Terca</th>
+				</tr>
+				<tr>
+					<th>Disciplina</th>
+					<th>Professor</th>
+				</tr>
+			</table>
+
+			<br />
+
+			<table id="Quarta" border="1">
+				<tr>
+					<th colspan="2">Quarta</th>
+				</tr>
+				<tr>
+					<th>Disciplina</th>
+					<th>Professor</th>
+				</tr>
+			</table>
+
+			<br />
+
+			<table id="Quinta" border="1">
+				<tr>
+					<th colspan="2">Quinta</th>
+				</tr>
+				<tr>
+					<th>Disciplina</th>
+					<th>Professor</th>
+				</tr>
+			</table>
+
+			<br />
+
+			<table id="Sexta" border="1">
+				<tr>
+					<th colspan="2">Sexta</th>
+				</tr>
+				<tr>
+					<th>Disciplina</th>
+					<th>Professor</th>
+				</tr>
+			</table>
+
+			<br />
+
+			<table id="Sabado" border="1">
+				<tr>
+					<th colspan="2">Sabado</th>
+				</tr>
+				<tr>
+					<th>Disciplina</th>
+					<th>Professor</th>
+				</tr>
+			</table>
+
+			<br />
+
+		</div>
+
+	</center>
+	</element>
+
+	<style>
+th {
+	border-bottom: 1px solid #d6d6d6;
+}
+
+tr:nth-child(even) {
+	background: #e9e9e9;
+}
+</style>
+
+</body>
+</html>
