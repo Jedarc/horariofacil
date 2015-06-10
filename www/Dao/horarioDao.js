@@ -30,7 +30,7 @@ function horarioDao() {
 		return itens;
 	}
 	this.verificarTurma = function(codigo) {
-		
+
 		$.ajaxSetup({
 			async : false,
 			cache : false
@@ -38,9 +38,28 @@ function horarioDao() {
 
 		var res = "";
 
-		$.getJSON(baseURL + "/VerificarTurma?codTurma=" + codigo, function(data) {
-			res = data;
+		$.getJSON(baseURL + "/VerificarTurma?codTurma=" + codigo,
+				function(data) {
+					res = data;
+				});
+
+		return res;
+	}, this.getDadosTurma = function(codigoTurma) {
+		$.ajaxSetup({
+			async : false,
+			cache : false
 		});
+
+		var res = "";
+
+		$.getJSON(baseURL + "/ObterDadosTurma?codTurma=" + codigoTurma,
+				function(data) {
+					res = {
+						"semestre" : data.semestre,
+						"codCurso" : data.codCurso,
+						"cursoNome" : data.cursoNome
+					}
+				});
 
 		return res;
 	}

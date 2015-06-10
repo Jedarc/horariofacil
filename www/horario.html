@@ -31,10 +31,12 @@
 		}
 
 		function montarHorario() {
-			
+
+			controller.montarDados();
+
 			var turma = controller.getCodigoTurma();
 			$("#codigoTurma").text(turma);
-			
+
 			var data = new Date();
 			var tables = [ "Domingo", "Segunda", "Terca", "Quarta", "Quinta",
 					"Sexta", "Sabado" ]
@@ -84,6 +86,8 @@
 					adaptiveHeight : true,
 					startSlide : hoje
 				});
+				
+				$(".bx-controls-direction").hide();
 			});
 		}
 
@@ -92,23 +96,22 @@
 </head>
 <body>
 
-	<div data-role="controlgroup" data-type="horizontal">
-		<button onclick="controller.voltar('cursos')"
+	<div data-role="controlgroup" data-type="horizontal" style="display: inline-block;">
+		<button onclick="controller.voltar('cursos')" data-mini="true"
 			class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Cursos</button>
-		<button onclick="controller.voltar('semestres')"
+		<button onclick="controller.voltar('semestres')" data-mini="true"
 			class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Semestres</button>
-		<button onclick="controller.voltar('turmas')"
+		<button onclick="controller.voltar('turmas')" data-mini="true"
 			class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Turmas</button>
 	</div>
 
 	<element>
 	<center>
 		<h3>Verifique seu horário</h3>
-		<label>Turma <label id="codigoTurma"></label></label>
+		<label>Turma <label id="codigoTurma"></label></label> <input
+			id="imgCarregando" type="image" src="img/carregando.gif" />
 
-		<input id="imgCarregando" type="image" src="img/carregando.gif" />
-
-		<ul class="bxslider">
+		<ul class="bxslider" id="horario">
 			<li>
 				<table id="Domingo">
 					<tr>
@@ -188,8 +191,6 @@
 				</table>
 			</li>
 		</ul>
-
-		<div data-role="controlgroup" id="horario"></div>
 
 	</center>
 	</element>
