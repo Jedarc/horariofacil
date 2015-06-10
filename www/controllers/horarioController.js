@@ -2,6 +2,9 @@ var url = window.location.search.replace("?", "");
 var itens = url.split("&");
 
 var codigoTurma = window.decodeURIComponent(itens[0]);
+var cursoNome = window.decodeURIComponent(itens[1]);
+var semestre = window.decodeURIComponent(itens[2]);
+var codigoCurso = window.decodeURIComponent(itens[3]);
 
 var controller = {
 	getHorario : function(dia) {
@@ -27,5 +30,17 @@ var controller = {
 	resetar: function(){
 		alert("Sua turma não foi encontrada!");
 		location.href = "cursos.html";
+	},
+	voltar: function(opt){
+		if(opt == 'cursos'){
+			location.href = "cursos.html";
+		} else if(opt == 'semestres') {
+			location.href = "semestres.html?" + codigoCurso;
+		} else if(opt == 'turmas') {
+			location.href = "turmas.html?" + semestre + "&" + codigoCurso + "&" + cursoNome;
+		}
+	},
+	getCodigoTurma : function(){
+		return codigoTurma;
 	}
 };

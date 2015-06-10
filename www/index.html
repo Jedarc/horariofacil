@@ -2,20 +2,11 @@
 <html>
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-
-        <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
 
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-        
-        <script type="text/javascript" src="controllers/loadDependence.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+
         <script type="text/javascript" src="controllers/indexController.js"></script>
         
         <title>Horário Fácil</title>
@@ -28,11 +19,11 @@
         
     </head>
     <body>
-        <div class="app">
+        <div align="center">
+        <input type="image" src="img/logo.png" />
             <h1 id="titulo">Horário Fácil</h1>
-            <div id="deviceready" class="blink" style="text-align: center;">
-                <button class="event listening ui-btn" onclick="controller.errorAbout()" style="width: auto;height: auto">Dispositivo desconhecido!</button>
-                <button class="event received ui-btn" onclick="controller.iniciar()" style="width: auto;height: auto;padding: 1px">QUERO VER MEU HORÁRIO!</button>
+            <div id="buttonDiv" style="width: 270px;height: auto;">
+                <button onclick="controller.iniciar()">QUERO VER MEU HORÁRIO!</button>
             </div>
         </div>
         

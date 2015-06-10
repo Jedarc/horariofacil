@@ -17,7 +17,7 @@ var controller = {
 		return turmas;
 	},
 	setTurma : function(codigoTurma){
-		location.href = "horario.html?" + codigoTurma;
+		location.href = "horario.html?" + codigoTurma + "&" + cursoNome + "&" + semestre + "&" + codigoCurso;
 	},
 	voltar: function(opt){
 		if(opt == 'cursos'){

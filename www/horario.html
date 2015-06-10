@@ -11,11 +11,17 @@
 <script type="text/javascript" src="Dao/configure.js"></script>
 <script type="text/javascript" src="Dao/horarioDao.js"></script>
 <script type="text/javascript" src="controllers/horarioController.js"></script>
+
+<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
+
 <title>Horario</title>
 
 <script>
 	$(function() {
+
 		$("#horario").hide();
+
 		var res = controller.verificarTurma(codigoTurma);
 		if (res == true) {
 			$("#horario").show();
@@ -25,15 +31,23 @@
 		}
 
 		function montarHorario() {
+			
+			var turma = controller.getCodigoTurma();
+			$("#codigoTurma").text(turma);
+			
 			var data = new Date();
 			var tables = [ "Domingo", "Segunda", "Terca", "Quarta", "Quinta",
 					"Sexta", "Sabado" ]
 
 			for (var i = 0; i < 7; i++) {
+				var conteudo = false;
+
 				var horario = controller.getHorario(i);
 
 				if (typeof horario[0] != 'undefined') {
 					$("#imgCarregando").hide();
+
+					conteudo = true;
 
 					for (var y = 0; y < horario.length; y++) {
 
@@ -48,7 +62,29 @@
 					}
 
 				}
+
+				if (conteudo == false) {
+					var newRow = $("<tr>");
+					var cols = "";
+					cols += '<td colspan="2">'
+							+ '<label style="color:red">Nunhuma aula foi registrada para esse dia.</label>'
+							+ '</td>';
+
+					newRow.append(cols);
+
+					$("#" + tables[i]).append(newRow);
+				}
+
 			}
+
+			$(document).ready(function() {
+				var hoje = new Date().getDay();
+
+				$('.bxslider').bxSlider({
+					adaptiveHeight : true,
+					startSlide : hoje
+				});
+			});
 		}
 
 	});
@@ -56,104 +92,114 @@
 </head>
 <body>
 
+	<div data-role="controlgroup" data-type="horizontal">
+		<button onclick="controller.voltar('cursos')"
+			class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Cursos</button>
+		<button onclick="controller.voltar('semestres')"
+			class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Semestres</button>
+		<button onclick="controller.voltar('turmas')"
+			class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Turmas</button>
+	</div>
+
 	<element>
 	<center>
 		<h3>Verifique seu horário</h3>
+		<label>Turma <label id="codigoTurma"></label></label>
 
 		<input id="imgCarregando" type="image" src="img/carregando.gif" />
 
-		<div data-role="controlgroup" id="horario">
+		<ul class="bxslider">
+			<li>
+				<table id="Domingo">
+					<tr>
+						<th colspan="2">Domingo</th>
+					</tr>
+					<tr>
+						<th>Disciplina</th>
+						<th>Professor</th>
+					</tr>
+				</table>
+			</li>
+			<li>
+				<table id="Segunda">
+					<tr>
+						<th colspan="2">Segunda-Feira</th>
+					</tr>
+					<tr>
+						<th>Disciplina</th>
+						<th>Professor</th>
+					</tr>
+				</table>
 
-			<table id="Domingo" border="1">
-				<tr>
-					<th colspan="2">Domingo</th>
-				</tr>
-				<tr>
-					<th>Disciplina</th>
-					<th>Professor</th>
-				</tr>
-			</table>
+			</li>
+			<li>
+				<table id="Terca">
+					<tr>
+						<th colspan="2">Terca-Feira</th>
+					</tr>
+					<tr>
+						<th>Disciplina</th>
+						<th>Professor</th>
+					</tr>
+				</table>
+			</li>
+			<li>
+				<table id="Quarta">
+					<tr>
+						<th colspan="2">Quarta-Feira</th>
+					</tr>
+					<tr>
+						<th>Disciplina</th>
+						<th>Professor</th>
+					</tr>
+				</table>
+			</li>
+			<li>
+				<table id="Quinta">
+					<tr>
+						<th colspan="2">Quinta-Feira</th>
+					</tr>
+					<tr>
+						<th>Disciplina</th>
+						<th>Professor</th>
+					</tr>
+				</table>
+			</li>
+			<li>
+				<table id="Sexta">
+					<tr>
+						<th colspan="2">Sexta-Feira</th>
+					</tr>
+					<tr>
+						<th>Disciplina</th>
+						<th>Professor</th>
+					</tr>
+				</table>
+			</li>
+			<li>
+				<table id="Sabado">
+					<tr>
+						<th colspan="2">Sabado</th>
+					</tr>
+					<tr>
+						<th>Disciplina</th>
+						<th>Professor</th>
+					</tr>
+				</table>
+			</li>
+		</ul>
 
-			<br />
-
-			<table id="Segunda" border="1">
-				<tr>
-					<th colspan="2">Segunda</th>
-				</tr>
-				<tr>
-					<th>Disciplina</th>
-					<th>Professor</th>
-				</tr>
-			</table>
-
-			<br />
-
-			<table id="Terca" border="1">
-				<tr>
-					<th colspan="2">Terca</th>
-				</tr>
-				<tr>
-					<th>Disciplina</th>
-					<th>Professor</th>
-				</tr>
-			</table>
-
-			<br />
-
-			<table id="Quarta" border="1">
-				<tr>
-					<th colspan="2">Quarta</th>
-				</tr>
-				<tr>
-					<th>Disciplina</th>
-					<th>Professor</th>
-				</tr>
-			</table>
-
-			<br />
-
-			<table id="Quinta" border="1">
-				<tr>
-					<th colspan="2">Quinta</th>
-				</tr>
-				<tr>
-					<th>Disciplina</th>
-					<th>Professor</th>
-				</tr>
-			</table>
-
-			<br />
-
-			<table id="Sexta" border="1">
-				<tr>
-					<th colspan="2">Sexta</th>
-				</tr>
-				<tr>
-					<th>Disciplina</th>
-					<th>Professor</th>
-				</tr>
-			</table>
-
-			<br />
-
-			<table id="Sabado" border="1">
-				<tr>
-					<th colspan="2">Sabado</th>
-				</tr>
-				<tr>
-					<th>Disciplina</th>
-					<th>Professor</th>
-				</tr>
-			</table>
-
-			<br />
-
-		</div>
+		<div data-role="controlgroup" id="horario"></div>
 
 	</center>
 	</element>
 
 	<style>
+table {
+	height: 100%;
+	margin-bottom: 30px;
+}
+
 th {
 	border-bottom: 1px solid #d6d6d6;
 }
